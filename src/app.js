@@ -35,7 +35,7 @@ app.use(infoRoutes);
 
 // send to home page if not routed
 app.get('/', function(req, res) {
-    res.sendFile('./public/index.html');
+    res.sendFile('../public/index.html');
 });
 
 // 404 error not found
