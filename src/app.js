@@ -1,18 +1,16 @@
 const express = require('express')
-const app = express()
+const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
 const path = require('path');
 
 const infoRoutes = require('./api/routes/info');
 
-const uri = 
-    'mongodb+srv://read-user:' + 
-    process.env.MONGO_ATLAS_PW +
-    '@ubc-web-api-zvc60.mongodb.net/2018W?retryWrites=true';
+const connectionMap = require('./connection');
 
-mongoose.connect(uri, { useNewUrlParser: true });
+//console.log(uri);
+
+//mongoose.connect(uri, { useNewUrlParser: true });
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
@@ -56,4 +54,7 @@ app.use((error, req, res, next) => {
     });
 });
 
-module.exports = app;
+module.exports = { 
+	app: app,
+	connectionMap: connectionMap
+}

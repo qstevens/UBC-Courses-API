@@ -1,24 +1,24 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
 const Subject = require('../models/subject');
+const connectionMap = require('../../connection'); 
 
-router.get('/:subject', (req, res, next) => {
-    Subject
-        .findOne({code: req.params.subject})
-        .exec()
-        .then(doc => {
-            console.log(doc);
-            res.status(200).json(doc);
-        })
-        .catch(err => {
-            console.log(err);
-        });
+router.get('/:session/:subject', (req, res, next) => {
+    connectionMap[req.params.session].model('Subject')
+    .findOne({code: req.params.subject})
+    .exec()
+    .then(doc => {
+        console.log(doc);
+        res.status(200).json(doc);
+    })
+    .catch(err => {
+        console.log(err);
+    });
 });
 
 
-router.get('/:subject/:course', (req, res, next) => {
-    Subject
+router.get('/:session/:subject/:course', (req, res, next) => {
+    connectionMap[req.params.session].model('Subject')
     .findOne({code: req.params.subject})
     .exec()
     .then(doc => {
@@ -32,8 +32,8 @@ router.get('/:subject/:course', (req, res, next) => {
 });
 
 
-router.get('/:subject/:course/:section', (req, res, next) => {
-    Subject
+router.get('/:session/:subject/:course/:section', (req, res, next) => {
+    connectionMap[req.params.session].model('Subject')
     .findOne({code: req.params.subject})
     .exec()
     .then(doc => {
