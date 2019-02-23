@@ -33,7 +33,10 @@ app.use((req, res, next) => {
 
 app.use(infoRoutes);
 
-// app.render('./public/index.html');
+// send to home page if not routed
+app.get('/', function(req, res) {
+    res.sendFile('./public/index.html');
+});
 
 // 404 error not found
 app.use((req, res, next) => {
