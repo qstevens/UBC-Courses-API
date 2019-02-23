@@ -3,6 +3,7 @@ const app = express()
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const path = require('path');
 
 const infoRoutes = require('./api/routes/info');
 
@@ -35,7 +36,7 @@ app.use(infoRoutes);
 
 // send to home page if not routed
 app.get('/', function(req, res) {
-    res.sendFile('../public/index.html');
+    res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
 });
 
 // 404 error not found
