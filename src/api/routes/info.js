@@ -3,6 +3,19 @@ const router = express.Router();
 const Subject = require('../models/subject');
 const connectionMap = require('../../connection'); 
 
+router.get('/:session', (req, res, next) => {
+    connectionMap[req.params.session].model('Subject')
+    .find()
+    .exec()
+    .then(doc => {
+        console.log(doc);
+        res.status(200).json(doc);
+    })
+    .catch(err => {
+        console.log(err);
+    });
+});
+
 router.get('/:session/:subject', (req, res, next) => {
     connectionMap[req.params.session].model('Subject')
     .findOne({code: req.params.subject})
