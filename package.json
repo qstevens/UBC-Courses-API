@@ -2,17 +2,17 @@
   "name": "ubc-courses-api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node src/index.js",
-    "start-watch": "nodemon src/index.js",
+    "start": "nodemon src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.4",
-    "npm": "^6.5.0"
+    "morgan": "^1.9.1"
   },
   "devDependencies": {
     "nodemon": "^1.18.10"
