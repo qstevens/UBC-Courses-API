@@ -2,8 +2,16 @@ const express = require('express')
 const app = express()
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
-const infoRoutes = require('./routes/info');
+const infoRoutes = require('./api/routes/info');
+
+const uri = 
+    'mongodb+srv://read-user:' + 
+    process.env.MONGO_ATLAS_PW +
+    '@ubc-web-api-zvc60.mongodb.net/2018W?retryWrites=true';
+
+mongoose.connect(uri, { useNewUrlParser: true });
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
@@ -24,6 +32,8 @@ app.use((req, res, next) => {
 });
 
 app.use(infoRoutes);
+
+// app.render('./public/index.html');
 
 // 404 error not found
 app.use((req, res, next) => {
