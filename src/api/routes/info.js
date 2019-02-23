@@ -5,7 +5,7 @@ const Subject = require('../models/subject');
 
 router.get('/:subject', (req, res, next) => {
     Subject
-        .find({code: req.params.subject})
+        .findOne({code: req.params.subject})
         .exec()
         .then(doc => {
             console.log(doc);
@@ -19,10 +19,10 @@ router.get('/:subject', (req, res, next) => {
 
 router.get('/:subject/:course', (req, res, next) => {
     Subject
-    .find({code: req.params.subject})
+    .findOne({code: req.params.subject})
     .exec()
     .then(doc => {
-        let course = doc[0].courses[req.params.course];
+        let course = doc.courses[req.params.course];
         console.log(course);
         res.status(200).json(course);
     })
@@ -34,10 +34,10 @@ router.get('/:subject/:course', (req, res, next) => {
 
 router.get('/:subject/:course/:section', (req, res, next) => {
     Subject
-    .find({code: req.params.subject})
+    .findOne({code: req.params.subject})
     .exec()
     .then(doc => {
-        let course = doc[0].courses[req.params.course];
+        let course = doc.courses[req.params.course];
         let section = course.sections[req.params.section];
         console.log(section);
         res.status(200).json(section);
