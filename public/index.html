@@ -1,14 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+        <style>
+                table {
+                  font-family: arial, sans-serif;
+                  border-collapse: collapse;
+                  width: 100%;
+                }
+                
+                td, th {
+                  border: 1px solid #dddddd;
+                  text-align: left;
+                  padding: 8px;
+                }
+                
+                tr:nth-child(even) {
+                  background-color: #dddddd;
+                }
+        </style>
+
     <meta charset="UTF-8">
-    <title>Hello World</title>
+    <title>UBC Courses API</title>
 </head>
-<body>
-    UBC Courses API: </br> 
-    https://ubc-courses-api.herokuapp.com/ </br>
-    GET information for Subject /:session/:subject/ </br>
-    GET information for Course /:session/:subject/:course/ </br>
-    GET information for Section /:session/:subject/:course/:section
+<body> 
+    <h4>Root URI: https://ubc-courses-api.herokuapp.com</h4>
+    <table>
+        <tr>
+          <th>HTTP Request</th>
+          <th>Example</th>
+          <th>Description</th>
+        </tr>        
+        <tr>
+          <td>GET /session/subject/</td>
+          <td>GET https://ubc-courses-api.herokuapp.com/2018W/CPSC</td>
+          <td>Gets information for a subject</td>
+        </tr>
+        <tr>
+          <td>GET /session/subject/course/</td>
+          <td>GET https://ubc-courses-api.herokuapp.com/2018W/CPSC/310</td>
+          <td>Gets information for a course</td>
+        </tr>
+        <tr>
+          <td>GET /session/subject/course/section</td>
+          <td>GET https://ubc-courses-api.herokuapp.com/2018W/CPSC/310/101</td>
+          <td>Gets information for a section</td>
+        </tr>
+      </table>
 </body>
 </html>
