@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Subject = require('../models/subject');
+const Course = require('../models/course');
+const Section = require('../models/section');
 const connectionMap = require('../../connection'); 
 
 router.get('/:session', (req, res, next) => {
@@ -31,13 +33,12 @@ router.get('/:session/:subject', (req, res, next) => {
 
 
 router.get('/:session/:subject/:course', (req, res, next) => {
-    connectionMap[req.params.session].model('Subject')
-    .findOne({code: req.params.subject})
+    connectionMap[req.params.session].model('Course')
+    .findOne({course_name: req.params.subject + ' ' + req.params.course})
     .exec()
     .then(doc => {
-        let course = doc.courses[req.params.course];
-        console.log(course);
-        res.status(200).json(course);
+        console.log(doc);
+        res.status(200).json(doc);
     })
     .catch(err => {
         console.log(err);
@@ -46,14 +47,12 @@ router.get('/:session/:subject/:course', (req, res, next) => {
 
 
 router.get('/:session/:subject/:course/:section', (req, res, next) => {
-    connectionMap[req.params.session].model('Subject')
-    .findOne({code: req.params.subject})
+    connectionMap[req.params.session].model('Section')
+    .findOne({section: req.params.subject + ' ' + req.params.course + ' ' + req.params.section})
     .exec()
     .then(doc => {
-        let course = doc.courses[req.params.course];
-        let section = course.sections[req.params.section];
-        console.log(section);
-        res.status(200).json(section);
+        console.log(doc);
+        res.status(200).json(doc);
     })
     .catch(err => {
         console.log(err);

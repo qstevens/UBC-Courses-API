@@ -6,7 +6,7 @@ const subjectSchema = mongoose.Schema({
     link: String,
     title: String,
     faculty: String,
-    courses: Object
+    courses: Array
 });
 
 module.exports = mongoose.model('Subject', subjectSchema);
