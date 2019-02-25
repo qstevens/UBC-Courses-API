@@ -4,7 +4,8 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const path = require('path');
 
-const infoRoutes = require('./api/routes/info');
+const authoritativeRoutes = require('./api/routes/authoritative');
+const treeRoutes = require('./api/routes/tree');
 
 const connectionMap = require('./connection');
 
@@ -30,7 +31,10 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use(infoRoutes);
+
+app.use('/tree', treeRoutes);
+
+app.use(authoritativeRoutes);
 
 // send to home page if not routed
 app.get('/', function(req, res) {
