@@ -54,7 +54,4 @@ app.use((error, req, res, next) => {
     });
 });
 
-module.exports = { 
-	app: app,
-	connectionMap: connectionMap
-}
+module.exports = app;
