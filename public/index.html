@@ -31,19 +31,34 @@
           <th>Description</th>
         </tr>        
         <tr>
-          <td>GET /session/subject/</td>
+          <td>GET /<b>session</b>/<b>subject</b>/</td>
           <td>GET https://ubc-courses-api.herokuapp.com/2018W/CPSC</td>
           <td>Gets information for a subject</td>
         </tr>
         <tr>
-          <td>GET /session/subject/course/</td>
+          <td>GET /<b>session</b>/<b>subject</b>/<b>course</b>/</td>
           <td>GET https://ubc-courses-api.herokuapp.com/2018W/CPSC/310</td>
           <td>Gets information for a course</td>
         </tr>
         <tr>
-          <td>GET /session/subject/course/section</td>
+          <td>GET /<b>session</b>/<b>subject</b>/<b>course</b>/<b>section</b></td>
           <td>GET https://ubc-courses-api.herokuapp.com/2018W/CPSC/310/101</td>
           <td>Gets information for a section</td>
+        </tr>
+        <tr>
+          <td>GET /tree/<b>session</b>/<b>subject</b>/</td>
+          <td>GET https://ubc-courses-api.herokuapp.com/tree/2018W/CPSC</td>
+          <td>Gets information for a subject with course and section objects</td>
+        </tr>
+        <tr>
+          <td>GET /tree/<b>session</b>/<b>subject</b>/<b>course</b>/</td>
+          <td>GET https://ubc-courses-api.herokuapp.com/tree/2018W/CPSC/310</td>
+          <td>Gets information for a course with section objects</td>
+        </tr>
+        <tr>
+          <td>GET /tree/<b>session</b>/<b>subject</b>/<b>course</b>/<b>section</b></td>
+          <td>GET https://ubc-courses-api.herokuapp.com/tree/2018W/CPSC/310/101</td>
+          <td>Gets information for a section (redundant)</td>
         </tr>
       </table>
 </body>
