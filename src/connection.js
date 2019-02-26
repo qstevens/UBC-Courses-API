@@ -4,7 +4,7 @@ const sessionList = ['2018W', '2019S'];
 
 const connectionMap = {};
 
-for (let session of sessionList) {
+for (const session of sessionList) {
 	let connection = mongoose.createConnection(
 		'mongodb+srv://read-user:' +
 		process.env.MONGO_ATLAS_PW +
