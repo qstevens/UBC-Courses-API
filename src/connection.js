@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const sessionList = ['2018W', '2019S'];
+const sessionList = ['2018W', '2019S', '2019W'];
 
 const connectionMap = {};
 
