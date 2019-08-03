@@ -62,7 +62,7 @@ router.get('/:session/:subject/:course/:section', (req, res, next) => {
             let mainTable = $('table');
             let tbody = $('tbody', mainTable);
             let status = "";
-            let sections = $('tr', tbody)
+            $('tr', tbody)
                 .each((i, elem) => {
                     console.log(i + " elem:" + $(elem).text());
                     let td = $(elem).children().first();
@@ -70,6 +70,7 @@ router.get('/:session/:subject/:course/:section', (req, res, next) => {
                     let currStatus = td.text();
                     td = td.next();
                     console.log(td.text())
+                    console.log("doc section: " + doc.section)
                     if (td.text() === doc.section) {
                         status = currStatus;
                     }
