@@ -85,7 +85,11 @@ router.get('/:session/:subject/:course/:section', (req, res, next) => {
             let restrictedRemaining = $('td', currSeat).first().next().text();
             
             doc.totalRemaining = totalRemaining;
+            console.log(doc.currrentlyRegistered);
+            console.log(currrentlyRegistered);
             doc.currrentlyRegistered = currrentlyRegistered;
+            console.log(doc.currrentlyRegistered);
+            console.log(currrentlyRegistered);
             doc.generalRemaining = generalRemaining;
             doc.restrictedRemaining = restrictedRemaining;
             console.log("this is doc" + doc);
