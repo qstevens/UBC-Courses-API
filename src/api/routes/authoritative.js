@@ -75,8 +75,7 @@ router.get('/:session/:subject/:course/:section', (req, res, next) => {
             let totalRemaining = $('td', currSeat).first().next().text();
 
             currSeat = currSeat.next();
-            let currrentlyRegistered = $('td', currSeat).first().next().text();
-            console.log(currrentlyRegistered);
+            let currentlyRegistered = $('td', currSeat).first().next().text();
 
             currSeat = currSeat.next();
             let generalRemaining = $('td', currSeat).first().next().text();
@@ -85,14 +84,11 @@ router.get('/:session/:subject/:course/:section', (req, res, next) => {
             let restrictedRemaining = $('td', currSeat).first().next().text();
             
             doc.totalRemaining = totalRemaining;
-            console.log(doc[currrentlyRegistered]);
-            console.log(currrentlyRegistered);
-            doc[currrentlyRegistered] = currrentlyRegistered;
-            console.log(doc[currrentlyRegistered]);
-            console.log(currrentlyRegistered);
+            doc[currentlyRegistered] = currentlyRegistered;
             doc.generalRemaining = generalRemaining;
             doc.restrictedRemaining = restrictedRemaining;
             console.log("this is doc" + doc);
+            doc = JSON.stringify(doc, null, 4)
             res.status(200).json(doc);
         })
 
