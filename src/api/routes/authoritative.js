@@ -58,14 +58,14 @@ router.get('/:session/:subject/:course/:section', (req, res, next) => {
         let url = getSectionUrl(req);
         
 
-        var pageString = rp(url);
-        let $ = cheerio.load(pageString);
         console.log(url)
-        console.log(pageString)
+        rp(url, (error, response, body) => {
+        let $ = cheerio.load(body);
+        console.log("body: " + body)
             // Get Tables on Page (should contain a sectionTable, instructorTable, seatTable, bookTable)
             let tables = $('table');
 
-            console.log(tables);
+            console.log("start of tables ----------" + tables);
 
             // Add Seat Summary to Section
             let seatTable = tables[3];
@@ -88,6 +88,7 @@ router.get('/:session/:subject/:course/:section', (req, res, next) => {
             doc.currrentlyRegistered = currrentlyRegistered;
             doc.generalRemaining = generalRemaining;
             doc.restrictedRemaining = restrictedRemaining;
+        })
 
             console.log(doc);
             res.status(200).json(doc);
