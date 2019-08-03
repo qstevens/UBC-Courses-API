@@ -84,8 +84,6 @@ router.get('/:session/:subject/:course/:section', (req, res, next) => {
             let restrictedRemaining = $('td', currSeat).first().next().text();
             
             doc.totalRemaining = totalRemaining;
-            console.log(doc.currentlyRegistered);
-            console.log(currentlyRegistered);
             doc.currentlyRegistered = currentlyRegistered;
             doc.generalRemaining = generalRemaining;
             doc.restrictedRemaining = restrictedRemaining;
@@ -115,6 +113,24 @@ function getSectionUrl(req) {
         + sessionYr
         + "&section="
         + section
+        + "&dept="
+        + subject;
+
+    return url;
+}
+function getCourseUrl(req) {
+    let session = req.params.session;
+    let sessionCd = session.substring(4, 5);
+    let sessionYr = session.substring(0, 4);
+    let subject = req.params.subject;
+    let course = req.params.course;
+    let section = req.params.section;
+    let url = "https://courses.students.ubc.ca/cs/courseschedule?sesscd="
+        + sessionCd
+        + "&pname=subjarea&tname=subj-course&course="
+        + course
+        + "&sessyr="
+        + sessionYr
         + "&dept="
         + subject;
 
