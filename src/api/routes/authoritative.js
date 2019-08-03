@@ -5,7 +5,7 @@ const Course = require('../models/course');
 const Section = require('../models/section');
 const connectionMap = require('../../connection'); 
 
-let rp = require('request-promise');
+let rp = require('request');
 let cheerio = require('cheerio');
 
 router.get('/:session', (req, res, next) => {
@@ -58,12 +58,8 @@ router.get('/:session/:subject/:course/:section', (req, res, next) => {
         let url = getSectionUrl(req);
         
 
-        return rp(url), doc;
-        console.log(doc);
-        res.status(200).json(doc);
-    })
-    .then((req, doc) => {
-        let $ = cheerio.load(req);
+        var pageString = rp(url);
+        let $ = cheerio.load(pageString);
             // Get Tables on Page (should contain a sectionTable, instructorTable, seatTable, bookTable)
             let tables = $('table');
 
