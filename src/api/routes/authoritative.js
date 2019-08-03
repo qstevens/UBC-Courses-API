@@ -61,9 +61,12 @@ router.get('/:session/:subject/:course/:section', (req, res, next) => {
             let $ = cheerio.load(body);
             let mainTable = $('table');
             let tbody = $('tbody', mainTable);
-            let sections = $('tr', tbody);
-            console.log("sections: " + sections)
             let status = "";
+            let sections = $('tr', tbody)
+                .each((i, elem) => {
+                    console.log(i + " elem:" + elem)
+                })
+            console.log("sections: " + sections)
             sections.each((i, elem) => {
                 console.log($(this).children())
                 let td = $(this).children().first();
