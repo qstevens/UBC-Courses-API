@@ -117,10 +117,9 @@ router.get('/:session/:subject/:course/:section', (req, res, next) => {
             doc.generalRemaining = generalRemaining;
             doc.restrictedRemaining = restrictedRemaining;
             res.status(200).json(doc);
-        }
-        
         })
-        })
+    })
+}
         
 
     })
