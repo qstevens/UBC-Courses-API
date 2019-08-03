@@ -86,7 +86,7 @@ router.get('/:session/:subject/:course/:section', (req, res, next) => {
             console.log(tables);
             tables.each(table => {
                 let tableHead = $('thead', table);
-                console.log(table.text());
+                console.log(table);
                 if (tableHead.text() === "Seat Summary") {
                     seatTable = table;
                 }
