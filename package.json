@@ -12,10 +12,12 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "cheerio": "^1.0.0-rc.3",
     "express": "^4.16.4",
     "mongoose": "^5.4.15",
     "morgan": "^1.9.1",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "request-promise": "^4.2.4"
   },
   "devDependencies": {
     "nodemon": "^1.18.10"
