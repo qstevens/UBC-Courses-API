@@ -84,12 +84,12 @@ router.get('/:session/:subject/:course/:section', (req, res, next) => {
 
             // Add Seat Summary to Section
             let seatTable = tables[3];
-            console.log(tables);
-            console.log("table 3: " + seatTable)
+            // console.log(tables);
+            // console.log("table 3: " + seatTable)
             tables.each((i, elem) => {
                 let tableHead = $('thead', elem);
-                console.log("table: " + elem)
-                console.log(tableHead.text());
+                // console.log("table: " + elem)
+                // console.log(tableHead.text());
                 if (tableHead.text() === "Seat Summary") {
                     seatTable = elem;
                 }
