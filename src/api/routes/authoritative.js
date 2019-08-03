@@ -64,12 +64,12 @@ router.get('/:session/:subject/:course/:section', (req, res, next) => {
             let status = "";
             $('tr', tbody)
                 .each((i, elem) => {
-                    console.log(i + " elem:" + $(elem).text());
+                    // console.log(i + " elem:" + $(elem).text());
                     let td = $(elem).children().first();
-                    console.log(td.text())
+                    // console.log(td.text())
                     let currStatus = td.text();
                     td = td.next();
-                    console.log(td.text())
+                    // console.log(td.text())
                     console.log("doc section: " + doc.section)
                     if (td.text() === doc.section) {
                         status = currStatus;
@@ -84,6 +84,7 @@ router.get('/:session/:subject/:course/:section', (req, res, next) => {
 
             // Add Seat Summary to Section
             let seatTable = tables[3];
+            console.log(tables);
             tables.forEach(table => {
                 let tableHead = $('thead', table);
                 console.log(table.text());
