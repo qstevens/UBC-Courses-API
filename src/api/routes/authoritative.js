@@ -55,7 +55,7 @@ router.get('/:session/:subject/:course/:section', (req, res, next) => {
     .findOne({section: req.params.subject + ' ' + req.params.course + ' ' + req.params.section})
     .exec()
     .then(doc => {
-        if (doc === null) res.status(404);
+        if (doc === null) return;
         let url = getSectionUrl(req);
         let courseUrl = getCourseUrl(req);
         rp(courseUrl, (error, response, body) => {
