@@ -62,6 +62,7 @@ router.get('/:session/:subject/:course/:section', (req, res, next) => {
             let mainTable = $('table');
             let tbody = $('tbody', mainTable);
             let sections = $('tr', tbody);
+            console.log("sections: " + sections)
             let status = "";
             sections.each((i, elem) => {
                 let td = $(this).children().first();
