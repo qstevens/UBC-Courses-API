@@ -64,7 +64,7 @@ router.get('/:session/:subject/:course/:section', (req, res, next) => {
             let status = "";
             let sections = $('tr', tbody)
                 .each((i, elem) => {
-                    console.log(i + " elem:" + $(elem).text();
+                    console.log(i + " elem:" + $(elem).text());
                 })
             console.log("sections: " + sections)
             sections.each((i, elem) => {
