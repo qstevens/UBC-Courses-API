@@ -84,11 +84,12 @@ router.get('/:session/:subject/:course/:section', (req, res, next) => {
             let restrictedRemaining = $('td', currSeat).first().next().text();
             
             doc.totalRemaining = totalRemaining;
-            doc[currentlyRegistered] = currentlyRegistered;
+            console.log(doc.currentlyRegistered);
+            console.log(currentlyRegistered);
+            doc.currentlyRegistered = currentlyRegistered;
             doc.generalRemaining = generalRemaining;
             doc.restrictedRemaining = restrictedRemaining;
             console.log("this is doc" + doc);
-            doc = JSON.stringify(doc, null, 4)
             res.status(200).json(doc);
         })
 
