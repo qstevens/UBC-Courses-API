@@ -55,6 +55,7 @@ router.get('/:session/:subject/:course/:section', (req, res, next) => {
     .findOne({section: req.params.subject + ' ' + req.params.course + ' ' + req.params.section})
     .exec()
     .then(doc => {
+        if (doc === null) res.status(404);
         let url = getSectionUrl(req);
         let courseUrl = getCourseUrl(req);
         rp(courseUrl, (error, response, body) => {
@@ -76,7 +77,7 @@ router.get('/:session/:subject/:course/:section', (req, res, next) => {
                     }
                 })
             doc.status = status;
-            console.log(status);
+            // console.log(status);
             rp(url, (error, response, body) => {
             let $ = cheerio.load(body);
             // Get Tables on Page (should contain a sectionTable, instructorTable, seatTable, bookTable)
