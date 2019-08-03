@@ -6,6 +6,7 @@ const Section = require('../models/section');
 const connectionMap = require('../../connection'); 
 
 let rp = require('request-promise');
+let cheerio = require('cheerio');
 
 router.get('/:session', (req, res, next) => {
     connectionMap[req.params.session].model('Subject')
@@ -63,32 +64,8 @@ router.get('/:session/:subject/:course/:section', (req, res, next) => {
     })
     .then((req, doc) => {
         let $ = cheerio.load(req);
-
-            let section = $('.active')[0].children[0].data;
-            let section_subject = section.split(" ")[0];
-            let section_course = section.split(" ")[1];
-            let section_section = section.split(" ")[2];
-
             // Get Tables on Page (should contain a sectionTable, instructorTable, seatTable, bookTable)
             let tables = $('table');
-
-            // Add Building and Room details to Section
-            let sectionTable = tables[1];
-            let sectionBody = $('tbody', sectionTable);
-            let section_td = $('td', sectionBody);
-
-            let section_building = section_td.first().next().next().next().next().text();
-            let section_room = section_td.first().next().next().next().next().next().text();
-            
-            // Add instructors to Section
-            let instructors = [];
-            let instructorTable = tables[2];
-            let instructorBody = $('tbody', instructorTable);
-            let instructorTrs = $('tr', instructorBody);
-
-            instructorTrs.each(function() {
-                instructors.push($(this).children().first().next().text());
-            });
 
             // Add Seat Summary to Section
             let seatTable = tables[3];
