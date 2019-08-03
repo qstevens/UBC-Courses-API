@@ -88,10 +88,10 @@ router.get('/:session/:subject/:course/:section', (req, res, next) => {
             doc.currrentlyRegistered = currrentlyRegistered;
             doc.generalRemaining = generalRemaining;
             doc.restrictedRemaining = restrictedRemaining;
+            console.log("this is doc" + doc);
+            res.status(200).json(doc);
         })
 
-            console.log(doc);
-            res.status(200).json(doc);
     })
     .catch(err => {
         console.log(err);
