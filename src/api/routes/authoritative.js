@@ -56,10 +56,10 @@ router.get('/:session/:subject/:course/:section', (req, res, next) => {
     .exec()
     .then(doc => {
         if (doc === null) {
-            res.status(404);
+            res.status(404).json({error: "unable to find section"});
             return;
-        }
-        let url = getSectionUrl(req);
+        } else {
+            let url = getSectionUrl(req);
         let courseUrl = getCourseUrl(req);
         rp(courseUrl, (error, response, body) => {
             let $ = cheerio.load(body);
@@ -117,6 +117,8 @@ router.get('/:session/:subject/:course/:section', (req, res, next) => {
             doc.generalRemaining = generalRemaining;
             doc.restrictedRemaining = restrictedRemaining;
             res.status(200).json(doc);
+        }
+        
         })
         })
         
