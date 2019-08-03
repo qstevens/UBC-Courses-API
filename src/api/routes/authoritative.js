@@ -65,18 +65,15 @@ router.get('/:session/:subject/:course/:section', (req, res, next) => {
             let sections = $('tr', tbody)
                 .each((i, elem) => {
                     console.log(i + " elem:" + $(elem).text());
+                    let td = $(elem).children().first();
+                    console.log(td.text())
+                    let currStatus = td.text();
+                    td = td.next();
+                    console.log(td.text())
+                    if (td.text() === doc.section) {
+                        status = currStatus;
+                    }
                 })
-            console.log("sections: " + sections)
-            sections.each((i, elem) => {
-                console.log($(this).children())
-                let td = $(this).children().first();
-                let currstat = td.text();
-                td = td.next();
-                console.log("section: " + td.text())
-                if (td.text() === doc.section) {
-                    status = currstat;
-                }
-            })
             doc.status = status;
             console.log(status);
             rp(url, (error, response, body) => {
