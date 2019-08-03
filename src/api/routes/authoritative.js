@@ -56,16 +56,27 @@ router.get('/:session/:subject/:course/:section', (req, res, next) => {
     .exec()
     .then(doc => {
         let url = getSectionUrl(req);
-        
-
-        console.log(url)
-        rp(url, (error, response, body) => {
-        let $ = cheerio.load(body);
-        console.log("body: " + body)
+        let courseUrl = getCourseUrl(req);
+        rp(courseUrl, (error, response, body) => {
+            let $ = cheerio.load(body);
+            let mainTable = $('table');
+            let tbody = $('tbody', mainTable);
+            let sections = $('tr', tbody);
+            let status = "";
+            sections.each((i, elem) => {
+                let td = $(this).children().first();
+                let currstat = td.text();
+                td = td.next();
+                if (td.text() === doc.section) {
+                    status = currstat;
+                }
+            })
+            doc.status = status;
+            console.log(status);
+            rp(url, (error, response, body) => {
+            let $ = cheerio.load(body);
             // Get Tables on Page (should contain a sectionTable, instructorTable, seatTable, bookTable)
             let tables = $('table');
-
-            console.log("start of tables ----------" + tables);
 
             // Add Seat Summary to Section
             let seatTable = tables[3];
@@ -87,9 +98,10 @@ router.get('/:session/:subject/:course/:section', (req, res, next) => {
             doc.currentlyRegistered = currentlyRegistered;
             doc.generalRemaining = generalRemaining;
             doc.restrictedRemaining = restrictedRemaining;
-            console.log("this is doc" + doc);
             res.status(200).json(doc);
         })
+        })
+        
 
     })
     .catch(err => {
@@ -124,7 +136,6 @@ function getCourseUrl(req) {
     let sessionYr = session.substring(0, 4);
     let subject = req.params.subject;
     let course = req.params.course;
-    let section = req.params.section;
     let url = "https://courses.students.ubc.ca/cs/courseschedule?sesscd="
         + sessionCd
         + "&pname=subjarea&tname=subj-course&course="
