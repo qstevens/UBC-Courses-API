@@ -60,8 +60,12 @@ router.get('/:session/:subject/:course/:section', (req, res, next) => {
 
         var pageString = rp(url);
         let $ = cheerio.load(pageString);
+        console.log(url)
+        console.log(pageString)
             // Get Tables on Page (should contain a sectionTable, instructorTable, seatTable, bookTable)
             let tables = $('table');
+
+            console.log(tables);
 
             // Add Seat Summary to Section
             let seatTable = tables[3];
@@ -72,7 +76,8 @@ router.get('/:session/:subject/:course/:section', (req, res, next) => {
 
             currSeat = currSeat.next();
             let currrentlyRegistered = $('td', currSeat).first().next().text();
-            
+            console.log(currrentlyRegistered);
+
             currSeat = currSeat.next();
             let generalRemaining = $('td', currSeat).first().next().text();
             
