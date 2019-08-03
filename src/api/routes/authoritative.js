@@ -63,12 +63,12 @@ router.get('/:session/:subject/:course/:section', (req, res, next) => {
             let tbody = $('tbody', mainTable);
             let sections = $('tr', tbody);
             let status = "";
-            console.log(sections)
             sections.each((i, elem) => {
                 let td = $(this).children().first();
                 let currstat = td.text();
                 td = td.next();
-                console.log(td.text())
+                console.log("section: " + td.text())
+                console.log(this)
                 if (td.text() === doc.section) {
                     status = currstat;
                 }
