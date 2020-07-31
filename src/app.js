@@ -7,16 +7,10 @@ const path = require('path');
 const authoritativeRoutes = require('./api/routes/authoritative');
 const treeRoutes = require('./api/routes/tree');
 
-const connectionMap = require('./connection');
-
-//console.log(uri);
-
-//mongoose.connect(uri, { useNewUrlParser: true });
-
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-// app.set('json spaces', 4);
+app.set('json spaces', 4);
 
 // appends response header
 app.use((req, res, next) => {

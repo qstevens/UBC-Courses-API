@@ -9,6 +9,7 @@ let rp = require('request');
 let cheerio = require('cheerio');
 
 router.get('/:session', (req, res, next) => {
+    console.log('session');
     connectionMap[req.params.session].model('Subject')
     .find()
     .exec()
@@ -80,7 +81,6 @@ router.get('/:session/:subject/:course/:section', (req, res, next) => {
                     }
                 })
             doc.status = status;
-            // console.log(status);
             rp(url, (error, response, body) => {
             let $ = cheerio.load(body);
             // Get Tables on Page (should contain a sectionTable, instructorTable, seatTable, bookTable)
@@ -88,12 +88,8 @@ router.get('/:session/:subject/:course/:section', (req, res, next) => {
 
             // Add Seat Summary to Section
             let seatTable = tables[3];
-            // console.log(tables);
-            // console.log("table 3: " + seatTable)
             tables.each((i, elem) => {
                 let tableHead = $('thead', elem);
-                // console.log("table: " + elem)
-                // console.log(tableHead.text());
                 if (tableHead.text() === "Seat Summary") {
                     seatTable = elem;
                 }
